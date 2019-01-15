@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./popover.js"></script>
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            position: relative;
+            left: 200px;
+            top: 200px;
+            margin: 0 100px;
+            box-sizing: border-box
+        }
+    </style>
+</head>
+<body>
+    <button>点击弹窗</button>
+    <button>点击弹窗</button>
+    <button>点击弹窗</button>
+    <button>点击弹窗</button>
+    <button>点击弹窗</button>
+    <script type="text/javascript">
+        var elements = document.querySelectorAll("button") //获取元素
+        //批量给元素 new 插件Popover实例 内外设置了部分默认样式，样式可外部添加改写
+        for (var k = 0; k < elements.length; k++) {
+            new Popover({
+                element: elements[k], //元素节点对象
+                placement: "bottom", // bottom top left right 四种选择
+                content: "<ul><li><a>HTML</a></li><li><a>CSS</a></li><li><a>javascript</a></li><li><a>PHP</a></li></li><li><a>JAVA</a></li></li><li><a>SQL</a></li></ul>",
+                triggle: "hover", //触发事件 如click或hover两种选择  onmouseover/onmouseenter或onmouseout/onmouseleave
+                show: "slide", //fade 或 slide两种选择
+                time: "0.25s" //弹窗显示或隐藏时间  >0s
+            })
+        }
+    </script>
+</body>
+</html>
