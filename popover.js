@@ -20,20 +20,23 @@
         init: function () {
             this.divDom = document.createElement("div")
             this.element.appendChild(this.divDom)
-            this.divDom.style.opacity = '0'
-            this.divDom.style.padding = '0.1rem 0'
-            this.divDom.style.border = '1px solid #666'
-            this.divDom.style.borderRadius = '0.25rem'
-            this.divDom.style.boxShadow = '0 0 1rem #ccc'
-            this.divDom.style.cursor = 'pointer'
-            this.divDom.style.overflow = 'hidden'
+            //this.divDom.style.opacity = '0'
+            //this.divDom.style.padding = '0.1rem 0'
+            //this.divDom.style.border = '1px solid #666'
+            //this.divDom.style.borderRadius = '0.25rem'
+            //this.divDom.style.boxShadow = '0 0 1rem #ccc'
+            //this.divDom.style.cursor = 'pointer'
+            //this.divDom.style.overflow = 'hidden' //为行内式样式  DOM层与样式层没有分离不便维护，影响DOM性能
+
+            //cssText为内嵌样式 一次性设置 减少回流重绘，提升性能
+            const divStyle = "opacity:0;padding:0.1rem 0;border:1px solid #666; border-radius:0.25rem;box-shadow:0 0 1rem #ccc;overflow:hidden;cursor:pointer;"
+            this.divDom.style.cssText += divStyle
             this.divDom.innerHTML = this.content
             /*设置弹窗样式*/
             if (this.divDom.children[0].children !== "underfined") {
                 for (var k = 0; k < this.divDom.children[0].children.length; k++) {
-                    this.divDom.children[0].children[k].style.display = 'flex'
-                    this.divDom.children[0].children[k].style.justifyContent = 'flex-start'
-                    this.divDom.children[0].children[k].style.padding = '0.5rem'
+                    const childrenStyle = "display:flex;justify-content:flex-start;padding:0.5rem;"
+                    this.divDom.children[0].children[k].style.cssText += childrenStyle
                     //鼠标移入事件
                     this.divDom.children[0].children[k].onmouseover = function () {
                         this.style.backgroundColor = '#ccc'
